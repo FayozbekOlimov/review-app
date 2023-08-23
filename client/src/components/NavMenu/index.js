@@ -35,7 +35,7 @@ const NavMenu = () => {
 
   return (
     <>
-      <Grid container spacing={1}>
+      <Grid container>
         <Grid item>
           <NavMenuBox forphone={"false"}>
             {pages.map((page) => (

@@ -3,6 +3,7 @@ import Logo from "../Logo";
 import SearchBar from "../SearchBar";
 import Language from "../Language";
 import NavMenu from "../NavMenu";
+import ToggleThemeButton from "../ToggleThemeButton";
 
 const AppBar = () => {
   return (
@@ -29,6 +30,9 @@ const AppBar = () => {
             </Grid>
             <Grid item>
               <Grid container spacing={1} alignItems="center">
+                <Grid item>
+                  <ToggleThemeButton />
+                </Grid>
                 <Grid item>
                   <Language />
                 </Grid>
