@@ -15,28 +15,45 @@ import {
   CardActions,
   IconButton,
   Typography,
+  CardActionArea,
+  Divider,
 } from "@mui/material";
 import { ReviewText } from "./style";
+import shadows from "@mui/material/styles/shadows";
 
 const ReviewCard = () => {
   return (
-    <Card>
+    <Card sx={{ boxShadow: shadows["4"] }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: red[500], mr: 0 }} aria-label="recipe">
             J
           </Avatar>
         }
         title="Atomic Habits"
         subheader="James Clear"
+        sx={{
+          p: 1.5,
+          "& .MuiCardHeader-avatar": { mr: 1.5 },
+          "& span:nth-of-type(1)": {
+            fontWeight: 500,
+            width: "100%",
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 1,
+            overflow: "hidden",
+          },
+        }}
       />
-      <CardMedia
-        component="img"
-        height="240"
-        image="/images/book1.png"
-        alt="Paella dish"
-      />
-      <CardContent sx={{ pb: 0.5 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="240"
+          image="/images/book1.png"
+          alt="Atomic Habits"
+        />
+      </CardActionArea>
+      <CardContent sx={{ p: 1.5, pb: 1 }}>
         <Rating
           name="average-rating"
           size="small"
@@ -53,7 +70,8 @@ const ReviewCard = () => {
           significant, lasting improvements.
         </ReviewText>
       </CardContent>
-      <CardActions disableSpacing>
+      <Divider />
+      <CardActions disableSpacing sx={{ py: 0 }}>
         <Grid
           container
           display="flex"

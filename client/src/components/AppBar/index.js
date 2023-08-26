@@ -7,7 +7,7 @@ import ToggleThemeButton from "../ToggleThemeButton";
 
 const AppBar = () => {
   return (
-    <MuiAppBar position="static">
+    <MuiAppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ py: 2 }}>
           <Grid

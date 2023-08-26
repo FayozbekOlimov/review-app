@@ -45,7 +45,7 @@ export const themeSettings = (mode) => {
             },
             background: {
               paper: "#fff",
-              default: "#fff",
+              default: "#e4e3e3",
             },
           }
         : {
@@ -96,7 +96,7 @@ export const themeSettings = (mode) => {
       htmlFontSize: 16,
       h1: {
         fontFamily,
-        fontSize: fontSize * 6,
+        fontSize: fontSize * 4.5,
         fontWeight: 300,
         // "@media (max-width: 768px)": {
         //   fontSize: fontSize * 2.8,
@@ -104,7 +104,7 @@ export const themeSettings = (mode) => {
       },
       h2: {
         fontFamily,
-        fontSize: fontSize * 3.75,
+        fontSize: fontSize * 3,
         fontWeight: 300,
         // "@media (max-width: 768px)": {
         //   fontSize: fontSize * 2,
@@ -112,7 +112,7 @@ export const themeSettings = (mode) => {
       },
       h3: {
         fontFamily,
-        fontSize: fontSize * 3,
+        fontSize: fontSize * 2.5,
         fontWeight: 400,
         // "@media (max-width: 768px)": {
         //   fontSize: fontSize * 1.75,
@@ -120,7 +120,7 @@ export const themeSettings = (mode) => {
       },
       h4: {
         fontFamily,
-        fontSize: fontSize * 2.125,
+        fontSize: fontSize * 2,
         fontWeight: 400,
         // "@media (max-width: 768px)": {
         //   fontSize: fontSize * 1.45,

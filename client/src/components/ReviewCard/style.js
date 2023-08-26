@@ -4,7 +4,7 @@ export const ReviewText = styled(Typography)(({ theme }) => ({
   width: "100%",
   display: "-webkit-box",
   WebkitBoxOrient: "vertical",
-  WebkitLineClamp: 3,
+  WebkitLineClamp: 2,
   overflow: "hidden",
   color: theme.palette.text.secondary,
 }));
