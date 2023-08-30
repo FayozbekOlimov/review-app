@@ -2,14 +2,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import StarsIcon from "@mui/icons-material/Stars";
-import { red } from "@mui/material/colors";
 import {
-  Avatar,
   Box,
   Rating,
   Card,
   CardContent,
-  CardHeader,
   CardMedia,
   Grid,
   CardActions,
@@ -20,11 +17,12 @@ import {
 } from "@mui/material";
 import { ReviewText } from "./style";
 import shadows from "@mui/material/styles/shadows";
+import { formatDistanceToNow } from "date-fns";
 
 const ReviewCard = () => {
   return (
     <Card sx={{ boxShadow: shadows["4"] }}>
-      <CardHeader
+      {/* <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500], mr: 0 }} aria-label="recipe">
             J
@@ -44,7 +42,7 @@ const ReviewCard = () => {
             overflow: "hidden",
           },
         }}
-      />
+      /> */}
       <CardActionArea>
         <CardMedia
           component="img"
@@ -54,13 +52,24 @@ const ReviewCard = () => {
         />
       </CardActionArea>
       <CardContent sx={{ p: 1.5, pb: 1 }}>
-        <Rating
-          name="average-rating"
-          size="small"
-          value={4.4}
-          precision={0.1}
-          readOnly
-        />
+        <Typography fontWeight={500}>Atomic Habits</Typography>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          my={0.5}
+        >
+          <Rating
+            name="average-rating"
+            size="small"
+            value={4.4}
+            precision={0.1}
+            readOnly
+          />
+          <Typography variant="caption" fontStyle={"italic"}>
+            {formatDistanceToNow(new Date("2023-08-30T09:04:42.052Z"))} ago
+          </Typography>
+        </Box>
         <ReviewText variant="body2">
           "Atomic Habits" is a transformative guide that redefines the way we
           approach personal growth. Written by James Clear, the book delves into

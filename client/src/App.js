@@ -1,12 +1,12 @@
 import AppBar from "./components/AppBar";
-import LatestReviews from "./components/LatestReviews";
+import Main from "./pages/Main";
 import Review from "./pages/Review";
 
 const App = () => {
   return (
     <>
       <AppBar />
-      <LatestReviews />
+      <Main />
       <Review />
     </>
   );

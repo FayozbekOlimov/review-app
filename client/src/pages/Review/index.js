@@ -1,13 +1,20 @@
 import { useState } from "react";
-import { Box, Container, Rating, Typography } from "@mui/material";
+import { Box, Container, Grid, Rating, Typography } from "@mui/material";
 import shadows from "@mui/material/styles/shadows";
-import { MainReviewContent, OverallRatingBox, StickySidebar } from "./style";
+import {
+  MainReviewContent,
+  OverallRatingBox,
+  Span,
+  StickySidebar,
+} from "./style";
 import OverallRate from "./OverallRate";
 import PercentageBar from "./PercentageBar";
-import Title from "../../components/Title";
+import Comments from "./Comments";
+import Tag from "../../components/Tag";
+import { format } from "date-fns";
 
 const Review = () => {
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState(0);
 
   return (
     <Container maxWidth="xl" sx={{ mt: { xs: 20, md: 12 } }}>
@@ -35,16 +42,21 @@ const Review = () => {
           <Typography variant="h6" fontWeight={400} fontStyle="italic">
             James Clear
           </Typography>
-          <OverallRatingBox>
-            <OverallRate rate={4.6} />
-            <Box width="100%">
-              <PercentageBar percentage={45} stars={5} />
-              <PercentageBar percentage={37} stars={4} />
-              <PercentageBar percentage={12} stars={3} />
-              <PercentageBar percentage={3} stars={2} />
-              <PercentageBar percentage={3} stars={1} />
-            </Box>
-          </OverallRatingBox>
+
+          <Box display="inline-flex" flexWrap="wrap" columnGap={2} rowGap={1}>
+            <Typography>
+              <Span>8</Span> grade
+            </Typography>
+            <Typography>
+              <Span>4.6</Span> average rate
+            </Typography>
+            <Typography>
+              <Span>36</Span> ratings
+            </Typography>
+            <Typography>
+              <Span>22</Span> comments
+            </Typography>
+          </Box>
 
           <Typography variant="body1" py={1}>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora
@@ -109,9 +121,33 @@ const Review = () => {
             adipisci dicta eum fuga cumque porro omnis facilis, ipsam alias ut
             itaque quasi modi autem in sit.
           </Typography>
+
+          <Typography variant="body2" fontStyle="italic">
+            Posted on {format(new Date(), "dd MMMM, yyyy")}
+          </Typography>
+
+          <Grid container my={1} spacing={1}>
+            {["Action", "Adventure", "Sci-Fi"].map((tag, index) => (
+              <Grid item key={index}>
+                <Tag label={tag} />
+              </Grid>
+            ))}
+          </Grid>
+
+          <OverallRatingBox elevation={3}>
+            <OverallRate rate={4.6} />
+            <Box width="100%">
+              <PercentageBar percentage={45} stars={5} />
+              <PercentageBar percentage={37} stars={4} />
+              <PercentageBar percentage={12} stars={3} />
+              <PercentageBar percentage={3} stars={2} />
+              <PercentageBar percentage={3} stars={1} />
+            </Box>
+          </OverallRatingBox>
+
+          <Comments />
         </MainReviewContent>
       </Box>
-      <Title variant="h4">Comments</Title>
     </Container>
   );
 };

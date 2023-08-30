@@ -1,5 +1,4 @@
-import { Rating, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Rating, Typography, Box } from "@mui/material";
 
 const OverallRate = ({ rate }) => {
   return (
