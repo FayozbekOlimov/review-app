@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material";
 import { themeSettings } from "../theme";
 
 const useMode = () => {
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState("light");
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === "light" ? "dark" : "light"));

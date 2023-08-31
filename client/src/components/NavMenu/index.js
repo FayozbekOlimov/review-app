@@ -5,46 +5,56 @@ import {
   MenuItem,
   Typography,
   Menu,
-  Tooltip,
-  Avatar,
 } from "@mui/material";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavMenuBox } from "./style";
+import { Link } from "react-router-dom";
 
 const NavMenu = () => {
-  const pages = ["Login", "Sign up"];
-  const settings = ["Profile", "Logout"];
+  const pages = [
+    {
+      text: "Login",
+      to: "/login",
+    },
+    {
+      text: "Sign up",
+      to: "/signup",
+    },
+  ];
+  // const settings = ["Profile", "Logout"];
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  // const handleOpenUserMenu = (event) => {
+  //   setAnchorElUser(event.currentTarget);
+  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  // const handleCloseUserMenu = () => {
+  //   setAnchorElUser(null);
+  // };
 
   return (
     <>
       <Grid container>
         <Grid item>
           <NavMenuBox forphone={"false"}>
-            {pages.map((page) => (
+            {pages.map(({ text, to }) => (
               <Button
-                key={page}
+                key={text}
                 onClick={handleCloseNavMenu}
                 sx={{ color: "white", display: "block" }}
+                LinkComponent={Link}
+                to={to}
               >
-                {page}
+                {text}
               </Button>
             ))}
           </NavMenuBox>
@@ -80,9 +90,16 @@ const NavMenu = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map(({ text, to }) => (
+                <MenuItem key={text} onClick={handleCloseNavMenu}>
+                  <Typography
+                    textAlign="center"
+                    component={Link}
+                    to={to}
+                    sx={{ color: "text.primary", textDecoration: "none" }}
+                  >
+                    {text}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
