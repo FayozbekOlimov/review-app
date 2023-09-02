@@ -1,9 +1,12 @@
 import { useContext } from "react";
-import { useTheme, IconButton } from "@mui/material";
+import { useTheme } from "@mui/material";
 import { ThemeContext } from "../../context/ThemeContextProvider";
-import { Wrapper } from "./style";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
+import {
+  Brightness4Icon,
+  Brightness7Icon,
+  StyledIconButton,
+  Wrapper,
+} from "./style";
 
 const ToggleThemeButton = () => {
   const theme = useTheme();
@@ -11,17 +14,13 @@ const ToggleThemeButton = () => {
 
   return (
     <Wrapper>
-      <IconButton
-        onClick={toggleColorMode}
-        color="inherit"
-        sx={{ borderRadius: 0.5 }}
-      >
+      <StyledIconButton onClick={toggleColorMode}>
         {theme.palette.mode === "dark" ? (
-          <Brightness4Icon sx={{ fontSize: "24px" }} />
+          <Brightness4Icon />
         ) : (
-          <Brightness7Icon sx={{ fontSize: "24px" }} />
+          <Brightness7Icon />
         )}
-      </IconButton>
+      </StyledIconButton>
     </Wrapper>
   );
 };

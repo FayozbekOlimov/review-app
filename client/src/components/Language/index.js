@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material";
+import { StyledSelect } from "./style";
 
 const Language = () => {
   const [lang, setLang] = useState("en");
@@ -10,31 +11,10 @@ const Language = () => {
 
   return (
     <FormControl fullWidth>
-      <Select
-        id="lang-select"
-        value={lang}
-        onChange={handleChange}
-        size="small"
-        sx={{
-          width: 80,
-          color: "white",
-          "& fieldset": {
-            border: "1px solid white",
-          },
-
-          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#fff",
-            borderWidth: "1px",
-          },
-
-          "& .MuiSvgIcon-root": {
-            color: "white",
-          },
-        }}
-      >
+      <StyledSelect value={lang} onChange={handleChange} size="small">
         <MenuItem value={"en"}>EN</MenuItem>
         <MenuItem value={"uz"}>UZ</MenuItem>
-      </Select>
+      </StyledSelect>
     </FormControl>
   );
 };

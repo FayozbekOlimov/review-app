@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Container, Grid, Rating, Typography } from "@mui/material";
-import shadows from "@mui/material/styles/shadows";
 import {
+  Image,
   MainReviewContent,
   OverallRatingBox,
+  ReviewDetails,
   Span,
   StickySidebar,
 } from "./style";
@@ -16,19 +17,16 @@ import { format } from "date-fns";
 const Review = () => {
   const [value, setValue] = useState(0);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Container maxWidth="xl" sx={{ mt: { xs: 20, md: 12 } }}>
       <Box display="flex" flexWrap="wrap">
         <StickySidebar>
-          <img
-            src="/images/book1.png"
-            alt="book"
-            width="100%"
-            height="auto"
-            style={{ boxShadow: shadows[6], borderRadius: "8px" }}
-          />
+          <Image src="/images/book1.png" alt="book" />
           <Rating
-            name="review-rating"
             value={value}
             onChange={(_, newValue) => {
               setValue(newValue);
@@ -43,20 +41,20 @@ const Review = () => {
             James Clear
           </Typography>
 
-          <Box display="inline-flex" flexWrap="wrap" columnGap={2} rowGap={1}>
-            <Typography>
+          <ReviewDetails>
+            <Typography variant="body2">
               <Span>8</Span> grade
             </Typography>
-            <Typography>
-              <Span>4.6</Span> average rate
+            <Typography variant="body2">
+              <Span>2</Span> ratings
             </Typography>
-            <Typography>
-              <Span>36</Span> ratings
+            <Typography variant="body2">
+              <Span>8</Span> likes
             </Typography>
-            <Typography>
-              <Span>22</Span> comments
+            <Typography variant="body2">
+              <Span>2</Span> comments
             </Typography>
-          </Box>
+          </ReviewDetails>
 
           <Typography variant="body1" py={1}>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora
@@ -122,8 +120,8 @@ const Review = () => {
             itaque quasi modi autem in sit.
           </Typography>
 
-          <Typography variant="body2" fontStyle="italic">
-            Posted on {format(new Date(), "dd MMMM, yyyy")}
+          <Typography variant="body2" fontStyle="italic" textAlign="right">
+            {format(new Date(), "dd MMMM, yyyy")}
           </Typography>
 
           <Grid container my={1} spacing={1}>

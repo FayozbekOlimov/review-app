@@ -1,4 +1,4 @@
-import { Chip, Container, Grid, Paper } from "@mui/material";
+import { Container, Grid, Paper } from "@mui/material";
 import ReviewCard from "../../components/ReviewCard";
 import Tag from "../../components/Tag";
 import Title from "../../components/Title";

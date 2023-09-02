@@ -1,4 +1,5 @@
 import { Box, Paper, styled } from "@mui/material";
+import shadows from "@mui/material/styles/shadows";
 
 export const MainReviewContent = styled(Box)(({ theme }) => ({
   flex: 1,
@@ -76,3 +77,18 @@ export const Span = styled("span")({
   fontWeight: 500,
   color: "blueviolet",
 });
+
+export const Image = styled("img")({
+  boxShadow: shadows[6],
+  borderRadius: "8px",
+  width: "100%",
+  height: "auto",
+});
+
+export const ReviewDetails = styled(Box)(({ theme }) => ({
+  display: "inline-flex",
+  flexWrap: "wrap",
+  columnGap: theme.spacing(2),
+  rowGap: theme.spacing(1),
+  alignItems: "center",
+}));
