@@ -5,7 +5,7 @@ import Title from "../../components/Title";
 
 const Main = () => {
   return (
-    <Container maxWidth="xl" sx={{ mt: { xs: 20, md: 12 } }}>
+    <>
       <Title variant="h5">Latest Reviews</Title>
       <Grid container spacing={2} py={2}>
         {Array.from(Array(4)).map((_, ind) => (
@@ -40,7 +40,7 @@ const Main = () => {
           ))}
         </Grid>
       </Paper>
-    </Container>
+    </>
   );
 };
 
