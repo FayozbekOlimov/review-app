@@ -23,13 +23,13 @@ const AppBar = () => {
               item
               sx={{
                 order: { xs: 1, md: 0 },
-                width: { xs: "100%", md: "auto" },
+                width: { xs: "100%", md: "35%" },
               }}
             >
               <SearchBar />
             </Grid>
             <Grid item>
-              <Grid container spacing={1} alignItems="center">
+              <Grid container spacing={1.5} alignItems="center">
                 <Grid item>
                   <ToggleThemeButton />
                 </Grid>
