@@ -29,7 +29,7 @@ const AppBar = () => {
               <SearchBar />
             </Grid>
             <Grid item>
-              <Grid container spacing={1.5} alignItems="center">
+              <Grid container spacing={{ xs: 1, sm: 1.5 }} alignItems="center">
                 <Grid item>
                   <ToggleThemeButton />
                 </Grid>

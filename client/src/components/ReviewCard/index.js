@@ -14,15 +14,11 @@ import {
   ReviewGrade,
 } from "./style";
 
-const ReviewCard = () => {
+const ReviewCard = ({ reviewName, image, grade, date }) => {
   return (
     <CardWrapper>
       <CardImageBox>
-        <CardImage
-          component="img"
-          image="/images/book1.png"
-          alt="Atomic Habits"
-        />
+        <CardImage component="img" image={image} alt="Atomic Habits" />
         <CardActionArea>
           <ActionWrapper elevation={4}>
             <IconButton aria-label="add to favorites">
@@ -33,21 +29,21 @@ const ReviewCard = () => {
               />
             </IconButton>
           </ActionWrapper>
-          <ReviewGrade elevation={4}>8</ReviewGrade>
+          <ReviewGrade elevation={4}>{grade}</ReviewGrade>
         </CardActionArea>
       </CardImageBox>
       <CardContentBox>
-        <Typography fontWeight={500}>Atomic Habits</Typography>
+        <Typography fontWeight={500}>{reviewName}</Typography>
         <CardContentDetails>
           <Rating value={4.4} precision={0.1} size="small" readOnly />
           <Typography variant="caption" fontStyle="italic">
-            {formatDistanceToNow(new Date("2023-08-30T09:04:42.052Z"))} ago
+            {date ? `${formatDistanceToNow(new Date(date))} ago` : "..."}
           </Typography>
         </CardContentDetails>
         <Button
           fullWidth
           LinkComponent={Link}
-          to="/review"
+          to={`/reviews/${encodeURIComponent(reviewName)}`}
           size="small"
           variant="text"
           sx={{ textTransform: "none" }}

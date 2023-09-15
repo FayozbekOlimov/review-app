@@ -13,6 +13,9 @@ import PercentageBar from "./PercentageBar";
 import Comments from "./Comments";
 import Tag from "../../components/Tag";
 import { format } from "date-fns";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchSingleReview } from "../../store/singleReviewSlice";
 
 const Review = () => {
   const [value, setValue] = useState(0);
@@ -21,11 +24,34 @@ const Review = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const { reviewName } = useParams();
+  const dispatch = useDispatch();
+  const { review, status, error } = useSelector((state) => state.singleReview);
+
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(fetchSingleReview(reviewName));
+    }
+  }, [reviewName, status, dispatch]);
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (status === "failed") {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!review) {
+    return <div>Review not found</div>;
+  }
+
+  console.log(review);
+
   return (
-    // <Container maxWidth="xl" sx={{ mt: { xs: 20, md: 12 } }}>
     <Box display="flex" flexWrap="wrap">
       <StickySidebar>
-        <Image src="/images/book1.png" alt="book" />
+        <Image src={review?.image} alt="book" />
         <Rating
           value={value}
           onChange={(_, newValue) => {
@@ -36,14 +62,14 @@ const Review = () => {
         <Typography variant="h6">Rate this Review</Typography>
       </StickySidebar>
       <MainReviewContent>
-        <Typography variant="h4">Atomic Habits</Typography>
+        <Typography variant="h4">{review?.reviewName}</Typography>
         <Typography variant="h6" fontWeight={400} fontStyle="italic">
-          James Clear
+          {review?.author._id}
         </Typography>
 
         <ReviewDetails>
           <Typography variant="body2">
-            <Span>8</Span> grade
+            <Span>{review?.grade}</Span> grade
           </Typography>
           <Typography variant="body2">
             <Span>2</Span> ratings
@@ -57,7 +83,8 @@ const Review = () => {
         </ReviewDetails>
 
         <Typography variant="body1" py={1}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora
+          {review?.reviewText}
+          {/* Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora
           nostrum sapiente voluptate facere obcaecati modi ea necessitatibus
           mollitia eum saepe laboriosam minus quos, quo, expedita totam illo
           debitis, vero ut quaerat non. Velit numquam voluptatibus vitae maxime,
@@ -116,15 +143,15 @@ const Review = () => {
           quae illo nisi hic nulla maxime excepturi blanditiis molestiae
           provident beatae, qui doloribus animi tenetur dolorum. Quos neque
           dignissimos nostrum! Voluptatem, quo adipisci dicta eum fuga cumque
-          porro omnis facilis, ipsam alias ut itaque quasi modi autem in sit.
+          porro omnis facilis, ipsam alias ut itaque quasi modi autem in sit. */}
         </Typography>
 
         <Typography variant="body2" fontStyle="italic" textAlign="right">
-          {format(new Date(), "dd MMMM, yyyy")}
+          {format(new Date(review?.date), "dd MMMM, yyyy")}
         </Typography>
 
         <Grid container my={1} spacing={1}>
-          {["Action", "Adventure", "Sci-Fi"].map((tag, index) => (
+          {review?.tags.map((tag, index) => (
             <Grid item key={index}>
               <Tag label={tag} />
             </Grid>
@@ -145,7 +172,6 @@ const Review = () => {
         <Comments />
       </MainReviewContent>
     </Box>
-    // </Container>
   );
 };
 

@@ -4,17 +4,16 @@ import {
   Typography,
   Menu,
   Box,
-  Tooltip,
-  Avatar,
   Button,
 } from "@mui/material";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import UserAvatar from "./UserAvatar";
 
 const NavMenu = () => {
-  const pages = [
+  const links = [
     {
       text: "Login",
       to: "/login",
@@ -24,66 +23,24 @@ const NavMenu = () => {
       to: "/signup",
     },
   ];
-  const settings = ["Profile", "Logout"];
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
 
   const { user } = useSelector((state) => state.login);
-
-  console.log(user);
 
   return (
     <>
       <Box display={{ xs: "none", md: "flex" }}>
         {user?.message ? (
-          <>
-            <Tooltip>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  alt="John Doe"
-                  src="/static/images/avatar/2.jpg"
-                  sx={{ bgcolor: "secondary.main" }}
-                />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: 6 }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </>
+          <UserAvatar />
         ) : (
-          pages.map(({ text, to }) => (
+          links.map(({ text, to }) => (
             <Button
               key={text}
               onClick={handleCloseNavMenu}
@@ -98,39 +55,7 @@ const NavMenu = () => {
       </Box>
       <Box display={{ xs: "flex", md: "none" }} gap={1}>
         {user?.message ? (
-          <>
-            <Tooltip>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  alt="John Doe"
-                  src="/static/images/avatar/2.jpg"
-                  sx={{ bgcolor: "secondary.main" }}
-                />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: 6 }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </>
+          <UserAvatar />
         ) : (
           <>
             <IconButton
@@ -162,7 +87,7 @@ const NavMenu = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map(({ text, to }) => (
+              {links.map(({ text, to }) => (
                 <MenuItem key={text} onClick={handleCloseNavMenu}>
                   <Typography
                     textAlign="center"

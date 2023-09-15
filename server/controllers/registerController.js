@@ -19,7 +19,9 @@ const handleNewUser = async (req, res) => {
       password: hashedPwd,
     });
 
-    res.status(201).json({ success: "User registered successfully" });
+    await User.save();
+
+    res.status(201).json({ message: "User registered successfully" });
   } catch (err) {
     res.status(500).json({ message: "Registration failed" });
   }

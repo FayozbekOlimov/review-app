@@ -38,13 +38,16 @@ export const CardContentDetails = styled(Box)({
   alignItems: "center",
 });
 
-export const CardImage = styled(CardMedia)({
+export const CardImage = styled(CardMedia)(({ theme }) => ({
   height: "350px",
   transition: "all 0.3s ease",
   "&:hover": {
     transform: "scale(1.05)",
   },
-});
+  [theme.breakpoints.down("sm")]: {
+    height: "auto",
+  },
+}));
 
 export const CardImageBox = styled(Box)({
   overflow: "hidden",

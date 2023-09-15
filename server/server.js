@@ -14,6 +14,7 @@ app.use(cors(corsOptions));
 
 app.use("/login", require("./routes/login"));
 app.use("/register", require("./routes/register"));
+app.use("/reviews", require("./routes/reviews"));
 
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
