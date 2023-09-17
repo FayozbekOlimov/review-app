@@ -39,7 +39,8 @@ export const CardContentDetails = styled(Box)({
 });
 
 export const CardImage = styled(CardMedia)(({ theme }) => ({
-  height: "350px",
+  height: "300px",
+  objectPosition: "top",
   transition: "all 0.3s ease",
   "&:hover": {
     transform: "scale(1.05)",

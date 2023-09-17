@@ -37,7 +37,7 @@ const NavMenu = () => {
   return (
     <>
       <Box display={{ xs: "none", md: "flex" }}>
-        {user?.message ? (
+        {user?.email ? (
           <UserAvatar />
         ) : (
           links.map(({ text, to }) => (
@@ -54,7 +54,7 @@ const NavMenu = () => {
         )}
       </Box>
       <Box display={{ xs: "flex", md: "none" }} gap={1}>
-        {user?.message ? (
+        {user?.email ? (
           <UserAvatar />
         ) : (
           <>

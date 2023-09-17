@@ -8,5 +8,5 @@ const {
 
 router.get("/", getReviews).post("/", createReview);
 
-router.get("/:reviewName", getSingleReview);
+router.get("/:_id", getSingleReview);
 module.exports = router;

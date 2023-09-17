@@ -14,7 +14,7 @@ import {
   ReviewGrade,
 } from "./style";
 
-const ReviewCard = ({ reviewName, image, grade, date }) => {
+const ReviewCard = ({ _id, reviewName, image, grade, date }) => {
   return (
     <CardWrapper>
       <CardImageBox>
@@ -43,7 +43,7 @@ const ReviewCard = ({ reviewName, image, grade, date }) => {
         <Button
           fullWidth
           LinkComponent={Link}
-          to={`/reviews/${encodeURIComponent(reviewName)}`}
+          to={`/reviews/${_id}`}
           size="small"
           variant="text"
           sx={{ textTransform: "none" }}

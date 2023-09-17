@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../api/axios";
-import { REVIEWS_URL } from "../api/urls";
+import axios from "../../api/axios";
+import { REVIEWS_URL } from "../../api/urls";
 
 const initialState = {
   review: null,
@@ -10,12 +10,14 @@ const initialState = {
 
 export const fetchSingleReview = createAsyncThunk(
   "singleReview/fetchSingleReview",
-  async (reviewName) => {
+  async (id) => {
     try {
-      const response = await axios.get(`${REVIEWS_URL}/${reviewName}`);
+      const response = await axios.get(`${REVIEWS_URL}/${id}`);
       return response.data;
     } catch (error) {
-      throw error;
+      throw new Error(
+        error.response?.data?.message || "Failed to fetch the review"
+      );
     }
   }
 );

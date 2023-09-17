@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Container, FormWrapper, SocialMediaWrapper } from "../SignUp/style";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { loginAsync } from "../../store/loginSlice";
+import { loginAsync } from "../../store/auth/loginSlice";
 
 const Login = () => {
   const {

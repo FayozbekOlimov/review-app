@@ -6,8 +6,6 @@ const createReview = async (req, res) => {
   try {
     const { reviewName, group, tags, reviewText, image, grade } = req.body;
 
-    // const author = req;
-
     if (!reviewName || !group || !reviewText || grade === undefined) {
       return res
         .status(400)
@@ -21,14 +19,12 @@ const createReview = async (req, res) => {
       reviewText,
       image,
       grade,
-      author: new ObjectId("64fb039c2bba245c9ccc3053"),
+      authorId: new ObjectId("64fb039c2bba245c9ccc3053"),
     });
 
     await newReview.save();
 
-    res
-      .status(201)
-      .json({ message: "Review created successfully", review: newReview });
+    res.status(201).json(newReview);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Review creation failed." });
@@ -46,13 +42,11 @@ const getReviews = async (req, res) => {
 };
 
 const getSingleReview = async (req, res) => {
-  const reviewName = decodeURIComponent(req.params?.reviewName);
+  const reviewId = req.params._id;
 
   try {
-    const review = await Review.findOne({ reviewName }).populate(
-      "author",
-      "username"
-    );
+    const review = await Review.findOne({ _id: reviewId });
+
     if (!review) {
       return res.status(404).json({ message: "Review not found" });
     }

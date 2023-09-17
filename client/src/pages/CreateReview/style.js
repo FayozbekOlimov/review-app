@@ -7,11 +7,19 @@ export const Label = styled(Typography)({
 
 export const ImageUploadBox = styled(Box)(({ theme }) => ({
   border: "2px dashed #afaeae",
-  padding: "14px",
+  padding: "16px",
   textAlign: "center",
-  borderRadius: theme.spacing(1),
+  borderRadius: theme.spacing(0.5),
+  cursor: "pointer",
 
   "&:hover": {
     borderColor: theme.palette.primary.main,
   },
 }));
+
+export const Image = styled("img")({
+  maxWidth: "400px",
+  width: "100%",
+  height: "auto",
+  objectFit: "cover",
+});

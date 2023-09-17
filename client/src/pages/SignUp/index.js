@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Container, FormWrapper, SocialMediaWrapper } from "./style";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { signupAsync, clearError } from "../../store/signupSlice";
+import { signupAsync, clearError } from "../../store/auth/signupSlice";
 
 const SignUp = () => {
   const {

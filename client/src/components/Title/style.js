@@ -5,7 +5,7 @@ export const StyledTitle = styled(Typography)(({ theme }) => ({
   paddingLeft: theme.spacing(2),
   textTransform: "capitalize",
   lineHeight: 1.5,
-  margin: "8px 0",
+  margin: "4px 0",
 
   "&::before": {
     content: '""',

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { SIGNUP_URL } from "../api/urls";
-import axios from "../api/axios";
+import { SIGNUP_URL } from "../../api/urls";
+import axios from "../../api/axios";
 
 const initialState = {
   user: null,

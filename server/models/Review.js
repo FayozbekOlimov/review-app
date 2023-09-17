@@ -7,9 +7,13 @@ const reviewSchema = new Schema({
   tags: [{ type: String }],
   reviewText: { type: String, required: true },
   image: { type: String },
-  grade: { type: Number, min: 0, max: 10 },
+  grade: { type: Number, min: 0, max: 10, required: true },
   date: { type: Date, default: Date.now },
-  author: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  authorId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Review", reviewSchema);

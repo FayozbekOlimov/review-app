@@ -1,10 +1,11 @@
-import { Container, Grid, Paper } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import ReviewCard from "../../components/ReviewCard";
 import Tag from "../../components/Tag";
 import Title from "../../components/Title";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchAllReviews } from "../../store/reviewsSlice";
+import { fetchAllReviews } from "../../store/review/reviewsSlice";
+import ReviewCardSkeleton from "../../components/Skeleton";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -13,39 +14,43 @@ const Main = () => {
   );
 
   useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchAllReviews());
-    }
-  }, [status, dispatch]);
-
-  if (status === "loading") {
-    return <div>Loading reviews...</div>;
-  }
+    dispatch(fetchAllReviews());
+  }, [dispatch, fetchAllReviews]);
 
   if (status === "failed") {
     return <div>Error: {error}</div>;
   }
 
-  console.log(latestReviews);
-
   return (
     <>
       <Title variant="h5">Latest Reviews</Title>
       <Grid container spacing={2} py={2}>
-        {latestReviews.map((review, ind) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={ind}>
-            <ReviewCard {...review} />
-          </Grid>
-        ))}
+        {latestReviews?.length > 0
+          ? latestReviews.map((review, ind) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={ind}>
+                <ReviewCard {...review} />
+              </Grid>
+            ))
+          : Array.from(new Array(4)).map((_, ind) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={ind}>
+                <ReviewCardSkeleton />
+              </Grid>
+            ))}
       </Grid>
 
       <Title variant="h5">Top Reviews</Title>
       <Grid container spacing={2} py={2}>
-        {Array.from(Array(4)).map((_, ind) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={ind}>
-            <ReviewCard />
-          </Grid>
-        ))}
+        {topReviews?.length > 0
+          ? topReviews.map((review, ind) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={ind}>
+                <ReviewCard {...review} />
+              </Grid>
+            ))
+          : Array.from(new Array(4)).map((_, ind) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={ind}>
+                <ReviewCardSkeleton />
+              </Grid>
+            ))}
       </Grid>
 
       <Title variant="h5">Tag Cloud</Title>

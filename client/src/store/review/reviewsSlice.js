@@ -1,26 +1,29 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../api/axios";
-import { REVIEWS_URL } from "../api/urls";
+import axios from "../../api/axios";
+import { REVIEWS_URL } from "../../api/urls";
 
-// Define an initial state for reviews
 const initialState = {
-  // allReviews: [],
+  allReviews: [],
   latestReviews: [],
   topReviews: [],
   status: "idle",
   error: null,
 };
 
-// Create an async thunk for fetching all reviews
 export const fetchAllReviews = createAsyncThunk(
   "reviews/fetchAllReviews",
   async () => {
-    const response = await axios.get(REVIEWS_URL);
-    return response.data;
+    try {
+      const response = await axios.get(REVIEWS_URL);
+      return response.data;
+    } catch (error) {
+      throw new Error(
+        error.response?.data?.message || "Failed to fetch reviews"
+      );
+    }
   }
 );
 
-// Create a slice for reviews
 const reviewsSlice = createSlice({
   name: "reviews",
   initialState,
@@ -32,14 +35,12 @@ const reviewsSlice = createSlice({
       })
       .addCase(fetchAllReviews.fulfilled, (state, action) => {
         state.status = "succeeded";
-        // state.allReviews = action.payload;
+        state.allReviews = action.payload;
 
-        // Sort reviews by date to get the latest
         state.latestReviews = [...action.payload].sort((a, b) => {
-          return new Date(b.createdAt) - new Date(a.createdAt);
+          return new Date(b.date) - new Date(a.date);
         });
 
-        // Sort reviews by rating to get the top
         state.topReviews = [...action.payload].sort((a, b) => {
           return b.grade - a.grade;
         });

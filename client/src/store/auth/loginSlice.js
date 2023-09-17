@@ -1,7 +1,6 @@
-// loginSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../api/axios";
-import { LOGIN_URL } from "../api/urls";
+import axios from "../../api/axios";
+import { LOGIN_URL } from "../../api/urls";
 
 const initialState = {
   user: null,
